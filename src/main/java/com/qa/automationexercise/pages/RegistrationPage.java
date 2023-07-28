@@ -43,5 +43,5 @@ public class RegistrationPage {
 		Select yearSelect = new Select(eleYear);
 		yearSelect.selectByValue(stringValue[3]);
 	}
-
+// select utility would simplify this code a lot, please add.
 }
