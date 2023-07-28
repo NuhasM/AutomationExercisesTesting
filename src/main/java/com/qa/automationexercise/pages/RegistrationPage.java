@@ -41,7 +41,7 @@ public class RegistrationPage {
 		Select monthSelect = new Select(eleMonth);
 		monthSelect.selectByValue(stringValue[2]);
 		Select yearSelect = new Select(eleYear);
-		yearSelect.selectByVisibleText(stringValue[3]);
+		yearSelect.selectByValue(stringValue[3]);
 	}
 
 }
