@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Automation Exercises Test Suite" verbose="4"
+	thread-count="2" parallel="tests">
+
+	<test name="Automation Exercise HomePage Tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.qa.automationexercise.tests.HomePageTests" />
+		</classes>
+	</test>
+
+	<test name="Automation Exercise LoginPage Tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.qa.automationexercise.tests.LoginPageTests" />
+		</classes>
+	</test>
+
+	<test name="Automation Exercise RegistrationPage Tests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.qa.automationexercise.tests.RegistrationPageTests" />
+		</classes>
+	</test>
+
+</suite>
+
+
+
