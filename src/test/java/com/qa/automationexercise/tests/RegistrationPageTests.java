@@ -12,13 +12,18 @@ public class RegistrationPageTests extends SkeletonTest {
 		lp = hp.clickLoginButton();
 	}
 
-	@Test
+	@Test(priority = 0) // topFormFill will not need name because name will be pre-entered from
+						// LoginSignupFields
 	public void fillTopFormsTest() {
 		lp.fillLoginSignupFields("namehere", "amsdnajs@gmail.com");
 		rp = lp.clickSignupButton();
-		rp.topFormFill("password", "June", "1988", 27);
+		rp.topFormFill("mr", "hydra", "password", "June", "1988", 27);
 	}
-	
-	//bottom form please
+
+	@Test(priority = 1)
+	public void fillBottomFormsTest() {
+		rp.bottomFormFill("United States", "Hydra", "Lol", "Thors", "Random Street 123", "Fl 3", "NY", "Trista",
+				"11001", "123-456-7890");
+	}
 
 }

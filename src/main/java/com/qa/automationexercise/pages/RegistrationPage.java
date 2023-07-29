@@ -1,9 +1,10 @@
 package com.qa.automationexercise.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import com.qa.automationexercises.utils.WebElementUtilities;
 
@@ -21,7 +22,8 @@ public class RegistrationPage {
 	private By yearSelect = By.id("years");
 	private By newsletterBox = By.id("newsletter");
 	private By offersBox = By.id("optin");
-	private By addressInfoFields = By.xpath("//div//p[contains(@class, 'form-group')]/input"); // 9 fields, excelsheet+dataprovider
+	private By addressInfoFields = By.xpath("//div//p[contains(@class, 'form-group')]/input"); // 9 fields,
+																								// excelsheet+dataprovider
 	private By countrySelect = By.id("country");
 	private By createAccountBtn = By.linkText("Create Account");
 
@@ -29,9 +31,26 @@ public class RegistrationPage {
 		this.driver = driver;
 		webUtil = new WebElementUtilities(driver);
 	}
-	
-	// change name later, forms that are not address related - make a SelectUtility later
-	public void topFormFill(String pwText, String month, String year, int day) {
+
+	// make separate formfill with newsletter and offers
+	public void topFormFill(String title, String nameText, String pwText, String month, String year, int day) {
+		List<WebElement> eleTitle = webUtil.getElements(titleSelection);
+		switch (title.toLowerCase().trim()) {
+		case "mr":
+		case "mr.": {
+			eleTitle.get(0).click();
+		}
+		case "ms":
+		case "ms.": {
+			eleTitle.get(1).click();
+		}
+		default:
+			System.out.println("Please enter mr or ms, thank you.");
+		}
+
+		webUtil.getElement(name).clear();
+		webUtil.getElement(name).sendKeys(nameText);
+
 		WebElement eleDay = webUtil.getElement(daySelect);
 		WebElement eleMonth = webUtil.getElement(monthSelect);
 		WebElement eleYear = webUtil.getElement(yearSelect);
@@ -39,5 +58,21 @@ public class RegistrationPage {
 		webUtil.selectWithIndex(eleDay, day);
 		webUtil.selectWithText(eleMonth, month);
 		webUtil.selectWithValue(eleYear, year);
+	}
+
+	// values takes 9 arguments, first name, last name, company, address, address2,
+	// state,
+	// city, zip, phone number
+	public void bottomFormFill(String country, String... values) {
+		webUtil.selectWithText(webUtil.getElement(countrySelect), country);
+
+		List<WebElement> eleAddressFields = webUtil.getElements(addressInfoFields);
+		for (int i = 0; i < eleAddressFields.size(); i++) {
+			eleAddressFields.get(i).sendKeys(values[i]);
+		}
+	}
+
+	public void clickRegister() {
+		webUtil.getElement(createAccountBtn).click();
 	}
 }
