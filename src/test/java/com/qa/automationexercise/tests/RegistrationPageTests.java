@@ -16,7 +16,7 @@ public class RegistrationPageTests extends SkeletonTest {
 	public void fillTopFormsTest() {
 		lp.fillLoginSignupFields("namehere", "amsdnajs@gmail.com");
 		rp = lp.clickSignupButton();
-		rp.topFormFill("password", "27", "7", "1988");
+		rp.topFormFill("password", "June", "1988", 27);
 	}
 
 }

@@ -30,7 +30,7 @@ public class SkeletonTest {
 	
 	@AfterTest
 	public void tearDown() {
-		//driver.quit();
+		driver.quit();
 	}
 
 }

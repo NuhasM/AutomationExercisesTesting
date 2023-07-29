@@ -31,17 +31,13 @@ public class RegistrationPage {
 	}
 	
 	// change name later, forms that are not address related - make a SelectUtility later
-	public void topFormFill(String... stringValue) {
-		webUtil.getElement(password).sendKeys(stringValue[0]);
+	public void topFormFill(String pwText, String month, String year, int day) {
 		WebElement eleDay = webUtil.getElement(daySelect);
-		WebElement eleMonth = webUtil.getElement(yearSelect);
-		WebElement eleYear = webUtil.getElement(monthSelect);
-		Select daySelect = new Select(eleDay);
-		daySelect.selectByValue(stringValue[1]);
-		Select monthSelect = new Select(eleMonth);
-		monthSelect.selectByValue(stringValue[2]);
-		Select yearSelect = new Select(eleYear);
-		yearSelect.selectByValue(stringValue[3]);
+		WebElement eleMonth = webUtil.getElement(monthSelect);
+		WebElement eleYear = webUtil.getElement(yearSelect);
+		webUtil.getElement(password).sendKeys(pwText);
+		webUtil.selectWithIndex(eleDay, day);
+		webUtil.selectWithText(eleMonth, month);
+		webUtil.selectWithValue(eleYear, year);
 	}
-// select utility would simplify this code a lot, please add.
 }
