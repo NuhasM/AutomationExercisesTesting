@@ -33,7 +33,7 @@ public class RegistrationPage {
 	}
 
 	// make separate formfill with newsletter and offers
-	public void topFormFill(String title, String nameText, String pwText, String month, String year, int day) {
+	public void topFormFill(String title, String nameText, String pwText, String month, String year, String day) {
 		List<WebElement> eleTitle = webUtil.getElements(titleSelection);
 		switch (title.toLowerCase().trim()) {
 		case "mr":
@@ -55,7 +55,7 @@ public class RegistrationPage {
 		WebElement eleMonth = webUtil.getElement(monthSelect);
 		WebElement eleYear = webUtil.getElement(yearSelect);
 		webUtil.getElement(password).sendKeys(pwText);
-		webUtil.selectWithIndex(eleDay, day);
+		webUtil.selectWithValue(eleDay, day);
 		webUtil.selectWithText(eleMonth, month);
 		webUtil.selectWithValue(eleYear, year);
 	}
