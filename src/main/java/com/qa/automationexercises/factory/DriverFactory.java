@@ -16,6 +16,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class DriverFactory {
 	private WebDriver driver;
 	private Properties prop = new Properties();
+	private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+
+	private static WebDriver getThreadLocalDriver() {
+		return tlDriver.get();
+	}
 
 	public WebDriver driverSetup(Properties prop) {
 		driver = null;
@@ -28,24 +33,24 @@ public class DriverFactory {
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addExtensions(new File("./src/test/resources/browseraddons/extension_1_51_0_0.crx"));
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver(chromeOptions);
+			tlDriver.set(new ChromeDriver(chromeOptions));
 			break;
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			tlDriver.set(new FirefoxDriver());
 			break;
 		case "edge":
 			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
+			tlDriver.set(new EdgeDriver());
 			break;
 		default:
 			System.out.println("Please enter a correct browser name.");
 		}
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
-		driver.get(prop.getProperty("url"));
+		getThreadLocalDriver().manage().deleteAllCookies();
+		getThreadLocalDriver().manage().window().maximize();
+		getThreadLocalDriver().get(prop.getProperty("url"));
 
-		return driver;
+		return getThreadLocalDriver();
 	}
 
 	public Properties configSetup() {
