@@ -40,10 +40,12 @@ public class RegistrationPage {
 		case "mr":
 		case "mr.": {
 			eleTitle.get(0).click();
+			break;
 		}
 		case "ms":
 		case "ms.": {
 			eleTitle.get(1).click();
+			break;
 		}
 		default:
 			System.out.println("Please enter mr or ms, thank you.");

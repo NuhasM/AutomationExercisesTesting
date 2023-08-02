@@ -4,16 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.qa.automationexercises.constants.Constants;
 
 public class WebElementUtilities {
 	private WebDriver driver;
 	private Select objSelect;
+	private WebDriverWait wait;
 
 	public WebElementUtilities(WebDriver driver) {
 		this.driver = driver;
+		wait = new WebDriverWait(driver, Constants.DEFAULT_TIMEOUT);
 	}
 
 	public WebElement getElement(By locator) {
@@ -35,6 +42,15 @@ public class WebElementUtilities {
 			listAsStrings.add(e.getText());
 		}
 		return listAsStrings;
+	}
+
+	public boolean waitForElementPresent(By locator) {
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+			return true;
+		} catch (TimeoutException e) {
+			return false;
+		}
 	}
 
 	/***************************************************

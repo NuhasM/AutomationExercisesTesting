@@ -21,6 +21,7 @@ public class HomePage {
 	private By contactUsBtn = By.linkText(" Contact us");
 	private By testCaseBtn = By.linkText(" Test Cases");
 	private By logoutBtn = By.linkText("Logout");
+	private By deleteBtn = By.linkText("Delete Account");
 
 	// constructor (public, needs driver, sets up utils, )
 	public HomePage(WebDriver driver) {
@@ -53,6 +54,12 @@ public class HomePage {
 
 	public HomePage clickLogoutButton() {
 		WebElement button = webUtil.getElement(logoutBtn);
+		button.click();
+		return new HomePage(driver);
+	}
+
+	public HomePage clickDeleteAccount() {
+		WebElement button = webUtil.getElement(deleteBtn);
 		button.click();
 		return new HomePage(driver);
 	}

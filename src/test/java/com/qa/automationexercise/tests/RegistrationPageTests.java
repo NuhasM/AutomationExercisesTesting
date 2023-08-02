@@ -20,7 +20,7 @@ public class RegistrationPageTests extends SkeletonTest {
 		return ExcelUtilities.getTestData("registration");
 	}
 
-	@Test(dataProvider = "formData") // all registrants in US, hardcoded value
+	@Test(dataProvider = "formData", priority = 1) // all registrants in US, hardcoded value
 	public void fillFormsTest(String name, String email, String title, String password, String day, String month,
 			String year, String firstName, String lastName, String company, String address, String address2,
 			String state, String city, String zip, String phNumber) {
@@ -31,7 +31,9 @@ public class RegistrationPageTests extends SkeletonTest {
 		rp.clickRegister();
 		Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/account_created");
 		rp.postRegContinue();
-		hp.clickLogoutButton();
+		// hp.clickLogoutButton();
+		// temp delete for testing purposes
+		hp.clickDeleteAccount();
 	}
 
 }
