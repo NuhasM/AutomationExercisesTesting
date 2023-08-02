@@ -25,7 +25,6 @@ public class LoginPageTests extends SkeletonTest {
 	@Test
 	public void signupButtonTest() {
 		lp.fillLoginSignupFields("Name Here", "EmailHere@email.com");
-		lp.clickSignupButton();
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://automationexercise.com/signup"));
 	}
 

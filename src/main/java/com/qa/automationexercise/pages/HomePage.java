@@ -20,6 +20,7 @@ public class HomePage {
 	private By productsBtn = By.linkText(" Products");
 	private By contactUsBtn = By.linkText(" Contact us");
 	private By testCaseBtn = By.linkText(" Test Cases");
+	private By logoutBtn = By.linkText("Logout");
 
 	// constructor (public, needs driver, sets up utils, )
 	public HomePage(WebDriver driver) {
@@ -33,21 +34,27 @@ public class HomePage {
 		String strLogoText = eleLogo.getAttribute("alt");
 		return strLogoText;
 	}
-	
+
 	public List<String> getHeaderOptions() {
 		List<WebElement> headerList = new ArrayList<>();
 		headerList = webUtil.getElements(headerOptions);
 		List<String> strHeaderList = new ArrayList<>();
-		for(WebElement e : headerList) {
+		for (WebElement e : headerList) {
 			strHeaderList.add(e.getText().trim());
 		}
 		return strHeaderList;
 	}
-	
+
 	public LoginPage clickLoginButton() {
 		WebElement button = webUtil.getElement(signupLoginBtn);
 		button.click();
 		return new LoginPage(driver);
+	}
+
+	public HomePage clickLogoutButton() {
+		WebElement button = webUtil.getElement(logoutBtn);
+		button.click();
+		return new HomePage(driver);
 	}
 
 }

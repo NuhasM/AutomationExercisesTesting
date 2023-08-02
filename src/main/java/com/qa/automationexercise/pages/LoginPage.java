@@ -33,8 +33,8 @@ public class LoginPage {
 		return loginPageForms;
 	}
 
-	// method that fills signup form (signup form has two fields)
-	public void fillLoginSignupFields(String... fieldValues) {
+	// method that fills signup form (signup form has two fields) and clicks on sign up
+	public RegistrationPage fillLoginSignupFields(String... fieldValues) {
 		List<WebElement> signupFields = webUtil.getElements(signUpForms);
 
 		if (fieldValues.length != signupFields.size()) {
@@ -44,12 +44,11 @@ public class LoginPage {
 				signupFields.get(i).sendKeys(fieldValues[i]);
 			}
 		}
-	}
-
-	// method that clicks on signup button
-	public RegistrationPage clickSignupButton() {
 		webUtil.getElement(signupBtn).click();
 		return new RegistrationPage(driver);
+
 	}
+
+
 
 }
