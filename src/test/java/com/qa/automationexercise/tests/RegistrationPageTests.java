@@ -1,6 +1,7 @@
 package com.qa.automationexercise.tests;
 
-import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -9,32 +10,30 @@ import com.qa.automationexercises.utils.ExcelUtilities;
 
 public class RegistrationPageTests extends SkeletonTest {
 
-	@BeforeClass
+	@BeforeMethod
 	public void setupRegister() {
 		lp = hp.clickLoginButton();
 	}
 
-//	@DataProvider
-//	public Object[][] topFormData() {
-//		return ExcelUtilities.getTestData("topform");
-//	}
-//
-//	@DataProvider
-//	public Object[][] bottomFormData() {
-//		return ExcelUtilities.getTestData("bottomform");
-//	}
-
-	@Test(priority = 0)
-	public void fillTopFormsTest(String... strings) {
-		lp.fillLoginSignupFields("Rean", "yadayada@gmail.com");
-		rp = lp.clickSignupButton();
-		rp.topFormFill("mr", "hydra", "password", "June", "1988", "27");
+	@DataProvider
+	public Object[][] formData() {
+		return ExcelUtilities.getTestData("registration");
 	}
 
-	@Test(priority = 1)
-	public void fillBottomFormsTest(String... strings) {
-		rp.bottomFormFill("United States", "Hydra", "Lol", "Thors", "Random Street 123", "Fl 3", "NY", "Trista",
-				"11001", "123-456-7890");
+	@Test(dataProvider = "formData", priority = 1) // all registrants in US, hardcoded value
+	public void fillFormsTest(String name, String email, String title, String password, String day, String month,
+			String year, String firstName, String lastName, String company, String address, String address2,
+			String state, String city, String zip, String phNumber) {
+
+		rp = lp.fillLoginSignupFields(name, email);
+		rp.topFormFill(title, password, day, month, year);
+		rp.bottomFormFill("United States", firstName, lastName, company, address, address2, state, city, zip, phNumber);
+		rp.clickRegister();
+		Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/account_created");
+		rp.postRegContinue();
+		// hp.clickLogoutButton();
+		// temp delete for testing purposes
+		hp.clickDeleteAccount();
 	}
 
 }

@@ -25,7 +25,8 @@ public class RegistrationPage {
 	private By addressInfoFields = By.xpath("//div//p[contains(@class, 'form-group')]/input"); // 9 fields,
 																								// excelsheet+dataprovider
 	private By countrySelect = By.id("country");
-	private By createAccountBtn = By.linkText("Create Account");
+	private By createAccountBtn = By.xpath("//button[@data-qa='create-account']");
+	private By regConfirm = By.cssSelector(".btn.btn-primary");
 
 	public RegistrationPage(WebDriver driver) {
 		this.driver = driver;
@@ -33,23 +34,27 @@ public class RegistrationPage {
 	}
 
 	// make separate formfill with newsletter and offers
-	public void topFormFill(String title, String nameText, String pwText, String month, String year, String day) {
+	public void topFormFill(String title, String pwText, String day, String month, String year) {
 		List<WebElement> eleTitle = webUtil.getElements(titleSelection);
 		switch (title.toLowerCase().trim()) {
 		case "mr":
 		case "mr.": {
 			eleTitle.get(0).click();
+			break;
 		}
 		case "ms":
 		case "ms.": {
 			eleTitle.get(1).click();
+			break;
 		}
 		default:
 			System.out.println("Please enter mr or ms, thank you.");
 		}
 
-		webUtil.getElement(name).clear();
-		webUtil.getElement(name).sendKeys(nameText);
+//		double dayDouble = Double.parseDouble(day);
+//		int dayInt = (int) dayDouble;
+//		double yearDouble = Double.parseDouble(year);
+//		int yearInt = (int) yearDouble;
 
 		WebElement eleDay = webUtil.getElement(daySelect);
 		WebElement eleMonth = webUtil.getElement(monthSelect);
@@ -74,5 +79,9 @@ public class RegistrationPage {
 
 	public void clickRegister() {
 		webUtil.getElement(createAccountBtn).click();
+	}
+
+	public void postRegContinue() {
+		webUtil.getElement(regConfirm).click();
 	}
 }
