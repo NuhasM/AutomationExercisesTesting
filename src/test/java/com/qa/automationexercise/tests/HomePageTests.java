@@ -11,7 +11,7 @@ import com.qa.automationexercises.constants.Constants;
 public class HomePageTests extends SkeletonTest {
 
 	@Test
-	public void logoTest() {
+	public void logoPresenceTest() {
 		String logoText = hp.getLogoText();
 		Assert.assertEquals(logoText, Constants.AMEXERCISES_LOGO_TEXT);
 		System.out.println("If you see this message, logo verification has passed.");
@@ -25,7 +25,7 @@ public class HomePageTests extends SkeletonTest {
 	}
 	
 	@Test(priority = 1)
-	public void loginPageTest() {
+	public void gotoLoginPageTest() {
 		lp = hp.clickLoginButton();
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://automationexercise.com/login"));
 		System.out.println("If you see this message, you have successfully navigated to the login/registration page.");

@@ -18,7 +18,7 @@ public class DriverFactory {
 	private Properties prop = new Properties();
 	private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
-	private static WebDriver getThreadLocalDriver() {
+	public static WebDriver getThreadLocalDriver() {
 		return tlDriver.get();
 	}
 

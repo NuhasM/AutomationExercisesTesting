@@ -17,7 +17,7 @@ public class LoginPageTests extends SkeletonTest {
 	}
 
 	@Test(priority = 0)
-	public void loginPageTest() {
+	public void loginPageVerificationTest() {
 		List<String> pageFormText = lp.loginPageVerification();
 		Assert.assertTrue(pageFormText.containsAll(Constants.AMEXERCISES_LOGIN_TEXT));
 	}
