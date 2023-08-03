@@ -33,7 +33,7 @@ public class RegistrationPageTests extends SkeletonTest {
 		rp.postRegContinue();
 		// hp.clickLogoutButton();
 		// temp delete for testing purposes
-		hp.clickDeleteAccount();
+		lhp.clickDeleteAccount();
 	}
 
 }

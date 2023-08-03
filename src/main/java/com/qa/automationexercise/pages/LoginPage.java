@@ -52,23 +52,10 @@ public class LoginPage {
 
 	}
 
-	public HomePage positiveLoginAsUser(String... fieldValues) {
-		List<WebElement> ele_loginFields = webUtil.getElements(loginFields);
-		if (fieldValues.length != ele_loginFields.size()) {
-			System.out.println("Yo dawg, pass the right arguments.");
-		} else {
-			for (int i = 0; i < fieldValues.length; i++) {
-				ele_loginFields.get(i).sendKeys(fieldValues[i]);
-			}
-		}
-		webUtil.getElement(loginBtn).click();
-		return new HomePage(driver);
-	}
-
 	public boolean negativeLoginAsUser(String... fieldValues) {
 		List<WebElement> ele_loginFields = webUtil.getElements(loginFields);
 		if (fieldValues.length != ele_loginFields.size()) {
-			System.out.println("Yo dawg, pass the right arguments.");
+			System.out.println("Please pass the right arguments.");
 		} else {
 			for (int i = 0; i < fieldValues.length; i++) {
 				ele_loginFields.get(i).sendKeys(fieldValues[i]);
@@ -77,6 +64,19 @@ public class LoginPage {
 		webUtil.getElement(loginBtn).click();
 //		WebElement ele_incorrect = webUtil.getElement(incorrectLoginText); // might need a wait
 		return webUtil.waitForElementPresent(incorrectLoginText);
+	}
+
+	public LoggedInHomePage positiveLoginAsUser(String... fieldValues) {
+		List<WebElement> ele_loginFields = webUtil.getElements(loginFields);
+		if (fieldValues.length != ele_loginFields.size()) {
+			System.out.println("Please pass the right arguments.");
+		} else {
+			for (int i = 0; i < fieldValues.length; i++) {
+				ele_loginFields.get(i).sendKeys(fieldValues[i]);
+			}
+		}
+		webUtil.getElement(loginBtn).click();
+		return new LoggedInHomePage(driver);
 	}
 
 }

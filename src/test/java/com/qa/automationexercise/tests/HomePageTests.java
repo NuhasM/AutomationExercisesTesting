@@ -16,19 +16,26 @@ public class HomePageTests extends SkeletonTest {
 		Assert.assertEquals(logoText, Constants.AMEXERCISES_LOGO_TEXT);
 		System.out.println("If you see this message, logo verification has passed.");
 	}
-	
+
 	@Test
 	public void headerTest() {
 		List<String> headerText = hp.getHeaderOptions();
 		Assert.assertTrue(headerText.containsAll(Constants.AMEXERCISES_HEADER_TEXT));
 		System.out.println("If you see this message, header verification has passed.");
 	}
-	
+
 	@Test(priority = 1)
 	public void gotoLoginPageTest() {
 		lp = hp.clickLoginButton();
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://automationexercise.com/login"));
 		System.out.println("If you see this message, you have successfully navigated to the login/registration page.");
+	}
+
+	@Test(priority = 2)
+	public void positiveLoginTest() {
+		lhp = lp.positiveLoginAsUser(prop.getProperty("dummyEmail"), prop.getProperty("dummyPassword"));
+		Assert.assertEquals(lhp.verifyLoggedIn(), true);
+		System.out.println("You are logged in");
 	}
 
 }
