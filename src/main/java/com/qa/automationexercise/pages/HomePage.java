@@ -18,7 +18,7 @@ public class HomePage {
 	private By headerOptions = By.cssSelector(".nav.navbar-nav li");
 	private By signupLoginBtn = By.linkText("Signup / Login");
 	private By productsBtn = By.linkText(" Products");
-	private By contactUsBtn = By.linkText(" Contact us");
+	private By contactUsBtn = By.linkText("Contact us");
 	private By testCaseBtn = By.linkText(" Test Cases");
 
 	// constructor (public, needs driver, sets up utils, )
@@ -48,6 +48,12 @@ public class HomePage {
 		WebElement button = webUtil.getElement(signupLoginBtn);
 		button.click();
 		return new LoginPage(driver);
+	}
+	
+	public ContactPage navigateToContactUs() {
+		WebElement button = webUtil.getElement(contactUsBtn);
+		button.click();
+		return new ContactPage(driver);
 	}
 
 }

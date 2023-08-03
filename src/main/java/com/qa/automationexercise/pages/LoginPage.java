@@ -21,6 +21,7 @@ public class LoginPage {
 	private By signupFields = By.xpath("//div/form[@action='/signup']/input[contains(@data-qa, 'signup')]");
 	private By loginFields = By.xpath("//form[@action='/login']/input[contains(@data-qa, 'login')]");
 	private By incorrectLoginText = By.xpath("//p[contains(text(), 'incorrect')]");
+	private By userExists = By.xpath("//div/form/p[contains(text(), 'already exist')]");
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -50,6 +51,21 @@ public class LoginPage {
 		webUtil.getElement(signupBtn).click();
 		return new RegistrationPage(driver);
 
+	}
+
+	// method that fills signup form with already created user
+	public boolean negativeSignupFields(String... fieldValues) {
+		List<WebElement> ele_signupFields = webUtil.getElements(signupFields);
+
+		if (fieldValues.length != ele_signupFields.size()) {
+			throw new IllegalArgumentException("Values do not match fields in form.");
+		} else {
+			for (int i = 0; i < ele_signupFields.size(); i++) {
+				ele_signupFields.get(i).sendKeys(fieldValues[i]);
+			}
+		}
+		webUtil.getElement(signupBtn).click();
+		return webUtil.waitForElementPresent(userExists);
 	}
 
 	public boolean negativeLoginAsUser(String... fieldValues) {

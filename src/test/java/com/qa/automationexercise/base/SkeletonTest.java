@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import com.qa.automationexercise.pages.ContactPage;
 import com.qa.automationexercise.pages.HomePage;
 import com.qa.automationexercise.pages.LoggedInHomePage;
 import com.qa.automationexercise.pages.LoginPage;
@@ -21,6 +22,7 @@ public class SkeletonTest {
 	protected LoginPage lp;
 	protected RegistrationPage rp;
 	protected LoggedInHomePage lhp;
+	protected ContactPage cp;
 
 	@BeforeTest
 	public void setupTests() {

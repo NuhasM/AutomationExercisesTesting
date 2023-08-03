@@ -30,10 +30,10 @@ public class LoggedInHomePage {
 		}
 	}
 
-	public HomePage clickLogoutButton() {
+	public LoginPage clickLogoutButton() {
 		WebElement button = webUtil.getElement(logoutBtn);
 		button.click();
-		return new HomePage(driver);
+		return new LoginPage(driver);
 	}
 
 	public HomePage clickDeleteAccount() {

@@ -34,4 +34,10 @@ public class LoginPageTests extends SkeletonTest {
 		Assert.assertEquals(login, true);
 	}
 
+	@Test(priority = 3) // Hardcoded name, name doesn't matter
+	public void negativeSignupTest() {
+		boolean signup = lp.negativeSignupFields("AnyNameHere", prop.getProperty("dummyEmail"));
+		Assert.assertEquals(signup, true);
+	}
+
 }
