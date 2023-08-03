@@ -1,13 +1,11 @@
 package com.qa.automationexercises.factory;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -25,19 +23,18 @@ public class DriverFactory {
 	public WebDriver driverSetup(Properties prop) {
 		driver = null;
 		String browserName = prop.getProperty("browser");
+		OptionsFactory options = new OptionsFactory(prop);
 
 		System.out.println("You have entered: " + browserName + ". Initialization started.");
 
 		switch (browserName.toLowerCase().trim()) {
 		case "chrome":
-			ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.addExtensions(new File("./src/test/resources/browseraddons/extension_1_51_0_0.crx"));
 			WebDriverManager.chromedriver().setup();
-			tlDriver.set(new ChromeDriver(chromeOptions));
+			tlDriver.set(new ChromeDriver(options.getChromeOptions()));
 			break;
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
-			tlDriver.set(new FirefoxDriver());
+			tlDriver.set(new FirefoxDriver(options.getFirefoxOptions()));
 			break;
 		case "edge":
 			WebDriverManager.edgedriver().setup();

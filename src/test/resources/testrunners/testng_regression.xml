@@ -25,6 +25,20 @@
 		</classes>
 	</test>
 
+	<test name="Automation Exercise LoggedIn/User Tests">
+		<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class name="com.qa.automationexercise.tests.LoggedInTests" />
+		</classes>
+	</test>
+
+	<test name="Automation Exercise Contact Form Tests">
+		<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class name="com.qa.automationexercise.tests.ContactPageTests" />
+		</classes>
+	</test>
+
 </suite>
 
 
