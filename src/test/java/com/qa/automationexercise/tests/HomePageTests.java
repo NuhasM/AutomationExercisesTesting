@@ -3,12 +3,18 @@ package com.qa.automationexercise.tests;
 import java.util.List;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.qa.automationexercise.base.SkeletonTest;
 import com.qa.automationexercises.constants.Constants;
 
 public class HomePageTests extends SkeletonTest {
+
+//	@BeforeMethod // Not sure if this is needed, might want to go back to homepage before methods eventually
+//	public void refreshHomePage() {
+//		driver.navigate().to(prop.getProperty("url"));
+//	}
 
 	@Test
 	public void logoPresenceTest() {
@@ -36,6 +42,13 @@ public class HomePageTests extends SkeletonTest {
 		lhp = lp.positiveLoginAsUser(prop.getProperty("dummyEmail"), prop.getProperty("dummyPassword"));
 		Assert.assertEquals(lhp.verifyLoggedIn(), true);
 		System.out.println("You are logged in");
+	}
+
+	@Test
+	public void navigateToContactTest() {
+		hp.navigateToContactUs();
+		Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/contact_us");
+		System.out.println("You are on Contact Us page");
 	}
 
 }

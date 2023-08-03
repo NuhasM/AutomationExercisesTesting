@@ -18,5 +18,11 @@ public class LoggedInTests extends SkeletonTest {
 	public void loginVerifiedTest() {
 		Assert.assertEquals(lhp.verifyLoggedIn(), true);
 	}
+	
+	@Test(priority=100)
+	public void logoutTest() {
+		lhp.clickLogoutButton();
+		Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/login");
+	}
 
 }
