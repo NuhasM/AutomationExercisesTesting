@@ -30,8 +30,8 @@ public class RegistrationPageTests extends SkeletonTest {
 		rp.bottomFormFill("United States", firstName, lastName, company, address, address2, state, city, zip, phNumber);
 		rp.clickRegister();
 		Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/account_created");
-		rp.postRegContinue();
-		// hp.clickLogoutButton();
+		lhp = rp.postRegContinue();
+		// lhp.clickLogoutButton();
 		// temp delete for testing purposes
 		lhp.clickDeleteAccount();
 	}

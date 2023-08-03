@@ -81,7 +81,8 @@ public class RegistrationPage {
 		webUtil.getElement(createAccountBtn).click();
 	}
 
-	public void postRegContinue() {
+	public LoggedInHomePage postRegContinue() {
 		webUtil.getElement(regConfirm).click();
+		return new LoggedInHomePage(driver);
 	}
 }
